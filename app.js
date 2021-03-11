@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 1338;
+const port = 1339;
 const morgan = require('morgan');
 const layout = require('./views/layout.js');
 const wikiIndex = require('./views/index');
