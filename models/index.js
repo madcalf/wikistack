@@ -29,10 +29,25 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    isEmail: true,
+    isEmail: false,
     unique: true,
   },
 });
+
+Page.beforeValidate((page, options) => {
+  page.slug = generateSlug(page.title);
+  console.log('BEFORE VALIDATE', page, options);
+});
+
+// Page.afterCreate((page, options) => {
+//   console.log('AFTER CREATE', page, options);
+// });
+
+function generateSlug(title) {
+  // Removes all non-alphanumeric characters from title
+  // And make whitespace underscore
+  return title.replace(/\s+/g, '_').replace(/\W/g, '');
+}
 
 module.exports = {
   db,
